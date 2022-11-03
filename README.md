@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         AnimInit();
     }
     
+    //최초 할당 
     void Init()
     {
         _pv = GetComponent<PhotonView>();
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _animationEventHandler = GetComponentInChildren<AnimationEventHandler>();
         _animationEventHandler.AttackEvent += AttackEvent;
     }
-
+    //최초 애니메이션 할당 
     void AnimInit()
     {
         _animXSpeed = Animator.StringToHash("xSpeed");
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _animJump = Animator.StringToHash("isJump");
     }
 
+    //서버 접속간 본인 캐릭터만 컨트롤가능하도록 주기적 체크수행
     void Update()
     {
         if (!_pv.IsMine)
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
 
-
+    //서버 접속간 본인 캐릭터만 컨트롤가능하도록 주기적 체크수행 (물리)
     void FixedUpdate()
     {
         if (!_pv.IsMine)
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _speed = Mathf.Approximately(_direction.magnitude, 0f) ? 0f : _offsetSpeed;
     }
 
+    //바닥체크 . . 
     void OnJump()
     {
         if (!_isGrounded || !_canJump)
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _isSprint = value.isPressed;
     }
 
+    // TODO : Attack 관련 -> 장착상태일시 스크립터블 참조하여 별도 애니메이션 수행
     void OnFire()
     {
         if (!_pv.IsMine)
@@ -125,6 +129,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
 
+    // 공격 Raycast 기즈모로 확인가능 
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position, _radius);
@@ -242,7 +247,8 @@ public class PlayerRotation : MonoBehaviourPunCallbacks
         if (_pv.IsMine && !_camTrans.gameObject.activeSelf)
             _camTrans.gameObject.SetActive(true);
     }
-
+    
+    // 쿼터뷰 카메라 ( LateUpdate : ) 
     void LateUpdate()
     {
         if (!_pv.IsMine)
@@ -250,6 +256,7 @@ public class PlayerRotation : MonoBehaviourPunCallbacks
         Follow();
     }
 
+    // 쿼터뷰
     void Follow()
     {
         _camTrans.position = transform.position;
@@ -535,6 +542,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         DontDestroyOnLoad(this);
     }
 
+    //포톤 접속 : 넘어갈 값 : 닉네임 
     public void ConnectBtn()
     {
        // PhotonNetwork.IsMessageQueueRunning = false;
@@ -544,6 +552,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         
     }
 
+    //마스터 클라이언트 체크 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);

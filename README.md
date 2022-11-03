@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [SerializeField] float _radius = 1f;
     [SerializeField] float _jumpPower = 0.4f;
     [SerializeField] float _sprintSpeed = 200f;
-    // TODO : 나중에 SerializeField 지우기
+    // TODO : 추후 SerializeField 제거
     [SerializeField] bool _isGrounded;
     [SerializeField] bool _isSprint;
     [SerializeField] Transform _camTrans;

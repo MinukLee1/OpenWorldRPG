@@ -2,6 +2,9 @@
 
 #### 포톤 기반 오픈월드 게임 
 
+
+![image](https://user-images.githubusercontent.com/74412438/199643688-cf86c11e-036e-4c80-b3c7-be6141cea6a8.png)
+
 #### PlayerController.cs
 
 ```C#

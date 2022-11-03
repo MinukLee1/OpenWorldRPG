@@ -3,8 +3,8 @@
 #### 포톤 기반 오픈월드 게임 
 
 #### PlayerController.cs
-<pre>
-<code>
+
+```C#
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -211,6 +211,5 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 }
 
-</pre>
-</code>
+```
 
